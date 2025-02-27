@@ -10,15 +10,7 @@
     <script th:src="@{/webjars/bootstrap/dist/js/bootstrap.min.js}"></script>
   </head>
   <body>
-    <div layout:replace="~{layout/navbar :: navbar(path='admin')}"></div>
-    <div th:switch="${param.view[0]}">
-      <div th:case="'movies'" layout:insert="~{layout/movies :: body}"></div>
-      <div
-        th:case="'showtimes'"
-        layout:insert="~{layout/showtimes :: body}"
-      ></div>
-      <div th:case="'report'" layout:insert="~{layout/report :: body}"></div>
-      <div th:case="*"></div>
-    </div>
+    <header layout:fragment="header"></header>
+    <main layout:fragment="content"></main>
   </body>
 </html>
