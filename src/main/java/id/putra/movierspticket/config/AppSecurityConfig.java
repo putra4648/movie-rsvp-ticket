@@ -28,7 +28,7 @@ public class AppSecurityConfig {
         http
                 .cors(Customizer.withDefaults())
                 .csrf(Customizer.withDefaults())
-                .authorizeHttpRequests(authorizeRequests -> authorizeRequests.anyRequest().authenticated())
+                .authorizeHttpRequests(authorizeRequests -> authorizeRequests.requestMatchers("webjars/**").permitAll().anyRequest().authenticated())
                 .formLogin(form -> form.successHandler(authenticationHandler))
                 .logout(Customizer.withDefaults())
                 .exceptionHandling(Customizer.withDefaults());
