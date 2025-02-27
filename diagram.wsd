@@ -1,4 +1,4 @@
-@startuml Movie Reservation System
+@startuml Movie_Reservation_System
 entity "User" {
     * **user_id : string <<PK>>**
     username : string
