@@ -1,0 +1,87 @@
+@startuml Movie Reservation System
+entity "User" {
+    * **user_id : string <<PK>>**
+    username : string
+    password : string
+    email : string
+}
+
+entity "Role" {
+    * role_id : integer <<PK>>
+    **user_id : string**
+    role_name : string
+}
+
+entity "Revenue" {
+    * **revenue_id : string <<PK>>**
+    item_name : string
+    base_price : number
+    total : number
+    date_acquired : date
+}
+
+entity RevenueCategory {
+    * **revenue_category_id : string <<PK>>**
+    **revenue_id : string <<FK>>**
+}
+
+entity Movie {
+    * **movie_id : string <<PK>>**
+    **revenue_category_id : string <<FK>>**
+    name : string
+    publisher_id : string 
+    showtime : date
+    is_showing : boolean
+    base_price : number
+    date_acquired : date
+    duration : number
+}
+
+entity Publisher {
+    * **publisher_id : string <<PK>>**
+    **movie_id : string <<FK>>**
+    name: string
+    year: number
+}
+
+entity Artist {
+    * **artist_id : string <<PK>>**
+    **movie_id : string <<FK>>**
+    name : string
+    gender : string
+}
+
+entity Beverage {
+    * **beverage_id : string <<PK>>**
+    **revenue_category_id : string <<FK>>**
+    base_price : number
+    date_acquired : date
+}
+
+entity Room {
+    * **room_id : string <<PK>>**
+    **movie_id : string <<FK>>**
+    total_seat : number
+    seat_available : number
+}
+
+entity Seat {
+    * **seat_id : string <<PK>>**
+    **room_id : string <<FK>>**
+    **user_id : string**
+    is_booked : boolean
+    booked_date : date
+}
+
+' ERD Relationship
+User ||..|{ Role
+Revenue ||..|{ RevenueCategory
+RevenueCategory ||..|{ Movie
+RevenueCategory ||..|{ Beverage
+Room ||..|{ Movie
+User |o..|{ Seat
+Seat ||..|{ Room
+Movie ||..|{ Publisher
+Movie ||..|{ Artist
+
+@enduml
