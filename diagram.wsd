@@ -40,6 +40,7 @@ entity Booking {
 
 entity Seats {
     seat_id: string
+    seat_code: string
     available: boolean
 }
 
@@ -47,6 +48,7 @@ entity Showtimes {
     showtime_id: string
     show_date: DateTime
     movie_id: string
+    seat_id: string
 }
 
 enum BookingStatus {
@@ -66,8 +68,9 @@ Movie ||--|{ Genre
 Movie ||--|{ Showtimes
 User ||--|| Booking
 User ||--|{ Role
-Booking ||--|| Seats
+Booking ||--|{ Seats
 Booking ||--|| Movie
+Seats ||--|{ Showtimes
 
 
 @enduml
