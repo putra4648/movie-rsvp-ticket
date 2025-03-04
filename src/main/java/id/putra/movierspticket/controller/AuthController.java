@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import id.putra.movierspticket.common.constant.UserRole;
 import id.putra.movierspticket.entity.Role;
 import id.putra.movierspticket.entity.User;
 import id.putra.movierspticket.form.RegisterForm;
@@ -32,7 +33,7 @@ public class AuthController {
         user.setUsername(form.getUsername());
         user.setPassword(passwordEncoder.encode(form.getPassword()));
         var role = new Role();
-        role.setName("ROLE_USER");
+        role.setRole(UserRole.USER);
         user.setRoles(Set.of(role));
         userRepository.persistAndFlush(user);
 
