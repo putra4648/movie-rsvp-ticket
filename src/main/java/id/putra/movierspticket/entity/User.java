@@ -46,7 +46,7 @@ public class User implements UserDetails {
         if (this.roles.isEmpty()) {
             return Collections.emptyList();
         }
-        return this.roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).toList();
+        return this.roles.stream().map(role -> new SimpleGrantedAuthority(role.getRole().name())).toList();
     }
 
     @Override
