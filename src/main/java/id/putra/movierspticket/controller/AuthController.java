@@ -32,15 +32,17 @@ public class AuthController {
         var user = new User();
         user.setUsername(form.getUsername());
         user.setPassword(passwordEncoder.encode(form.getPassword()));
+
         var role = new Role();
-        role.setRole(UserRole.USER);
+        role.setRole(UserRole.ROLE_USER);
         user.setRoles(Set.of(role));
-        userRepository.persistAndFlush(user);
+
+        userRepository.persist(user);
 
         return "redirect:/login";
     }
 
-    @GetMapping("/register")
+    @GetMapping("register")
     public String registerPage(@ModelAttribute("register_form") RegisterForm form) {
         return "register";
     }
